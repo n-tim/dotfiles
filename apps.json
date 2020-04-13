@@ -1,0 +1,26 @@
+{
+    "common": [
+        "autojump",
+        "zsh",
+        "newvim",
+        "tmux",
+        "ranger",
+        "git"
+    ],
+    "ubuntu": [
+        "autojump",
+        ""
+    ],
+    "osx": [
+        "brew"
+    ],
+    "repos": [
+        {"tpm": {
+            "repo": "https://github.com/tmux-plugins/tpm",
+            "run": "git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm"
+        }},
+        { "omyzsh": {
+            "run": "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
+        }}
+    ]
+}
