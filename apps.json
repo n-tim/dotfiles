@@ -2,7 +2,6 @@
     "common": [
         "autojump",
         "zsh",
-        "newvim",
         "tmux",
         "ranger",
         "git"
@@ -12,7 +11,12 @@
         ""
     ],
     "osx": [
-        "brew"
+        "brew",
+        "font-hack-nerd-tree",
+        "brew install tzvetkoff/extras/im2a",
+        "poppler",
+        "highlight",
+        "vim"
     ],
     "repos": [
         {"tpm": {
@@ -21,6 +25,14 @@
         }},
         { "omyzsh": {
             "run": "sh -c \"$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)\""
-        }}
+        }},
+        { "ranger dev icons": {
+            "repo": "https://github.com/alexanderjeurissen/ranger_devicons",
+            "run": "git clone https://github.com/alexanderjeurissen/ranger_devicons ~/.config/ranger/plugins/ranger_devicons"
+        }},
+        { "ranger autojump": {
+            "repo": "https://github.com/fdw/ranger-autojump",
+            "run": "git clone https://github.com/fdw/ranger-autojump.git ~/.config/ranger/plugins/ranger-autojump"
+        } }
     ]
 }
