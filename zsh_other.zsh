@@ -11,7 +11,7 @@ if [[ $OSTYPE == darwin* ]]; then
     if [[ -r $pythonUserPackagesDir/powerline/bindings/zsh/powerline.zsh ]]; then
       source $pythonUserPackagesDir/powerline/bindings/zsh/powerline.zsh
     fi
-else  if [[ $OSTYPE == linux ]]; then
+else  if [[ $OSTYPE == linux* ]]; then
         if [[ -r /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh ]]; then
           source /usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
         fi

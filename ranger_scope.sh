@@ -57,7 +57,12 @@ drop_bigsize() {
 }
 
 handle_stat() {
-    stat -x "${FILE_PATH}"
+    if [[ $OSTYPE == darwin* ]]; then
+        stat -x "${FILE_PATH}"
+    else  if [[ $OSTYPE == linux* ]]; then
+            stat "${FILE_PATH}"
+        fi
+    fi
     printf -v row "%${PV_WIDTH}s"; echo ${row// /-}
 }
 
@@ -366,6 +371,7 @@ fi
 
 
 handle_stat
+drop_bigsize
 handle_extension
 handle_mime "${MIMETYPE}"
 handle_fallback

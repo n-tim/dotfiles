@@ -4,17 +4,18 @@
         "zsh",
         "tmux",
         "ranger",
-        "git"
+        "git",
+        "exiftool"
     ],
     "ubuntu": [
         "autojump",
-        ""
+        "highlight"
     ],
     "osx": [
         "brew",
         "font-hack-nerd-tree",
-        "brew install tzvetkoff/extras/im2a",
-        "poppler",
+        "brew install tzvetkoff/extras/im2a (imgtotxt)",
+        "poppler (pdf to txt)",
         "highlight",
         "vim"
     ],

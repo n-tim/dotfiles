@@ -3,9 +3,13 @@
 [pull]
   default = current
 
+[includeIf "gitdir/i:~/Develop/sources/hdd/"]
+  path = ~/Develop/sources/hdd/.gitconfig
+
 [core]
   editor = vim
 	excludesfile = ~/.gitignore
+  excludesfile = gitignore
 
 [alias]
   blame-short = blame -c --date=short
