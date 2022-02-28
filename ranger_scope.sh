@@ -73,15 +73,15 @@ handle_extension() {
         rpm|rz|t7z|tar|tbz|tbz2|tgz|tlz|txz|tZ|tzo|war|xpi|xz|Z|zip)
             atool --list -- "${FILE_PATH}" && exit 5
             bsdtar --list --file "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
         rar)
             ## Avoid password prompt by providing empty password
             unrar lt -p- -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
         7z)
             ## Avoid password prompt by providing empty password
             7z l -p -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
 
         ## PDF
         pdf)
@@ -91,12 +91,12 @@ handle_extension() {
             mutool draw -F txt -i -- "${FILE_PATH}" 1-10 | \
               fmt -w "${PV_WIDTH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
 
         ## BitTorrent
         torrent)
             transmission-show -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
 
         ## OpenDocument
         odt|ods|odp|sxw)
@@ -104,14 +104,14 @@ handle_extension() {
             odt2txt "${FILE_PATH}" && exit 5
             ## Preview as markdown conversion
             pandoc -s -t markdown -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
 
         ## XLSX
         xlsx)
             ## Preview as csv conversion
             ## Uses: https://github.com/dilshod/xlsx2csv
             xlsx2csv -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            ;; # Continue with next handler on failure
 
         ## HTML
         htm|html|xhtml)
@@ -290,7 +290,7 @@ handle_mime() {
             ## note: catdoc does not always work for .doc files
             ## catdoc: http://www.wagner.pp.ru/~vitus/software/catdoc/
             catdoc -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            exit 0;;
 
         ## DOCX, ePub, FB2 (using markdown)
         ## You might want to remove "|epub" and/or "|fb2" below if you have
@@ -306,7 +306,7 @@ handle_mime() {
             ## xls2csv comes with catdoc:
             ##   http://www.wagner.pp.ru/~vitus/software/catdoc/
             xls2csv -- "${FILE_PATH}" && exit 5
-            exit 1;;
+            exit 0;;
 
         ## Text
         text/* | */xml)
@@ -335,7 +335,7 @@ handle_mime() {
             ## Preview as text conversion (requires djvulibre)
             djvutxt "${FILE_PATH}" | fmt -w "${PV_WIDTH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
-            exit 1;;
+            exit 0;;
 
         ## Image
         image/*)
@@ -347,19 +347,19 @@ handle_mime() {
             #echo '---'
             #printf -v row "%${PV_WIDTH}s"; echo ${row// /-}
             exiftool "${FILE_PATH}" && exit 5
-            exit 1;;
+            exit 0;;
 
         ## Video and audio
         video/* | audio/*)
             #mediainfo "${FILE_PATH}" && exit 5
             exiftool "${FILE_PATH}" && exit 5
-            exit 1;;
+            exit 0;;
     esac
 }
 
 handle_fallback() {
     echo '----- File Type Classification -----' && file --dereference --brief -- "${FILE_PATH}" && exit 5
-    exit 1
+    exit 0
 }
 
 

@@ -28,7 +28,7 @@
   lg3-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(bold cyan)%aD%C(reset) %C(bold green)(%ar)%C(reset) %C(bold cyan)(committed: %cD)%C(reset) %C(auto)%d%C(reset)%n%n''%w(0,10)%C(white)%s%C(reset)%n%n''%w(0,10,10)%C(dim white)%b%C(reset)'
 	lg4-specific = log --graph --abbrev-commit --decorate --format=format:'%C(bold blue)%h%C(reset) - %C(white)%s%C(reset)%C(auto)%d%C(reset)' --decorate-refs-exclude="tags/*"
   alias = config --get-regexp ^alias\\.
-	update = !"git pull && git submodule update --recursive"
+	update = !"git pull --rebase && git submodule update --recursive"
 	clear = !"git reset --hard $(git merge-base HEAD origin/HEAD)"
 	cb = rev-parse --abbrev-ref HEAD
   oldest-ancestor = !zsh -c 'diff --old-line-format='' --new-line-format='' <(git rev-list --first-parent "${1:-develop}") <(git rev-list --first-parent "${2:-HEAD}") | head -1'

@@ -1,0 +1,45 @@
+#!/bin/bash
+# copied from https://unix.stackexchange.com/a/198161
+
+function usage
+{
+    echo "usage: $0 -f file [-o outputFolder]"
+}
+
+function getStrippedFileName
+{
+    fileName="${1%.*}" #extracted filename
+    fileName=${fileName%.tar}
+
+    echo $fileName
+}
+
+outputFolder=
+filename=
+
+while [ "$1" != "" ]; do
+    case $1 in
+        -f | --file )           shift
+                                filename=$1
+                                ;;
+        -o | --output )         shift
+                                outputFolder=$1
+                                ;;
+        -h | --help )           usage
+                                exit
+                                ;;
+        * )                     usage
+                                exit 1
+    esac
+    shift
+done
+
+if [ -z "$outputFolder" ]; then
+    outputFolder=$(getStrippedFileName $filename)
+fi
+
+pwd
+echo $filename
+echo $outputFolder
+
+tar -xzf $filename --xform="s|^|$outputFolder/|S"

@@ -1,1 +1,2 @@
 plugins+=autojump
+plugins+=fzf

@@ -11,3 +11,7 @@ if [[ $OSTYPE == linux* ]]; then
     alias pbcopy='xclip -selection c'
     alias pbpaste='xclip -selection clipboard -o'
 fi
+
+function runFullTest() {
+    ./$1 --gtest_shuffle --gtest_repeat=3 --gtest_color=yes 2>/dev/null
+}
